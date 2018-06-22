@@ -1,0 +1,23 @@
+<h2> Please edit your course descriptions for your TAs </h2>
+
+<%= form_tag do %>
+<table>
+<thead>
+    <tr>
+    <th colspan="3"></th>
+    </tr>
+</thead>
+<tbody>
+    <% @courses.each do |details| %>
+    <tr>
+        <td><%= details["coursenum"] %></td>
+        <td> 
+            <textarea cols="80" row="20" id="comments" name="course[<%= details["coursenum"] %>][description]"><%= details["description"] %></textarea>
+        </td>
+    </tr>
+    <% end %>
+    
+</tbody>
+</table>
+<%= submit_tag "Submit" %>
+<% end %>
