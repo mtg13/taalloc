@@ -15,7 +15,7 @@ class StudentWflowController < ApplicationController
     end
     
     def submit
-        
+        # TODO: Sanitize!
         params[:course_priority].each_pair do |coursenum, priority|
             ActiveRecord::Base.connection.execute("insert into sprefs values (\'#{@current_student}\',\'#{coursenum}\',\'#{@nextSemYear}\',#{@nextSemNum},#{priority}) on conflict (id,coursenum,yearoffered,semoffered) do update set priority=excluded.priority")
         end

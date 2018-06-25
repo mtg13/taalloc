@@ -1,0 +1,35 @@
+<h2> Please select your TA preferences for your course(s) </h2>
+
+<%= form_tag do %>
+    <% @courses.each do |details| %>
+        <h3><%= details["coursenum"] %></h3>
+        <% ["phd", "msr", "dual", "mtech"].each do |tatype| %>
+            <h4><%= tatype %></h4>
+<table>
+<thead>
+    <tr>
+    <th colspan="4"></th>
+    </tr>
+</thead>
+<tbody>
+            <% @tas[details["coursenum"]][tatype].each do |tadetails| %>
+    <tr>
+        <td><a target="_blank" href="/student/<%= tadetails["id"] %>"><%= tadetails["id"] %></a></td>
+        <td><%= tadetails["name"] %></td>
+        <td><%= tadetails["cgpa"] %></td>
+        <td>
+            <select id="ta_priority" name="tapref[<%= details["coursenum"] %>][<%= tadetails["id"] %>]">
+                <option value="3" <%= (tadetails["priority"] == 3)?"selected":"" %> >High</option>
+                <option value="2" <%= (tadetails["priority"] == 2)?"selected":"" %> >Medium</option>
+                <option value="1" <%= (tadetails["priority"] == 1)?"selected":"" %> >Low</option>
+                <option value="0" <%= (tadetails["priority"] == 0)?"selected":"" %> >DO NOT ASSIGN</option>
+            </select>
+        </td>
+    </tr>
+            <% end %>
+</tbody>
+</table>
+        <% end %>
+    <% end %>
+    <%= submit_tag "Submit" %>
+<% end %>
