@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/student_wflow/not_found', to: 'student_wflow#not_found'
   post '/student_wflow', to: 'student_wflow#submit'
   
+  get '/faculty_wflow_menu', to: 'faculty_wflow#menu'
+  
   get '/faculty_wflow_feedback', to: 'faculty_wflow#show_feedback_form'
   post '/faculty_wflow_feedback', to: 'faculty_wflow#submit_feedback_form'
   
@@ -19,4 +21,5 @@ Rails.application.routes.draw do
   get '/', to: 'main#index'
   get '/login', to: 'main#login'
   get '/logout', to: 'main#logout'
+  get '/access_denied', to: 'main#access_denied'
 end

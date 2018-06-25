@@ -1,5 +1,5 @@
 class StudentWflowController < ApplicationController
-    before_action :setup_context
+    before_action :check_login, :setup_context
     
     def show
         # Check student eligibility
@@ -27,5 +27,13 @@ class StudentWflowController < ApplicationController
         @nextSemNum = session[:nextSemNum]
         @nextSemYear = session[:nextSemYear]
         @current_student = session[:current_user]
+    end
+    
+    def check_login
+        if(session[:current_user] == nil)
+            redirect_to '/' and return
+        elsif(session[:current_user_type] != 'student')
+            redirect_to '/access_denied' and return
+        end
     end
 end

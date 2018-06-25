@@ -10,7 +10,7 @@ class MainController < ApplicationController
             if(session[:current_user_type] == "student")
                 redirect_to '/student_wflow' and return
             else
-                redirect_to '/faculty_wflow' and return
+                redirect_to '/faculty_wflow_menu' and return
             end
         else
             # redirect to login and set session[:current_user] and session[:current_user_type]
@@ -52,6 +52,9 @@ class MainController < ApplicationController
         session[:current_user] = "naveen" # "mcs172105" #
         session[:current_user_type] = "faculty"
         redirect_to '/'
+    end
+    
+    def access_denied
     end
 
     def logout
